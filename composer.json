@@ -1,0 +1,37 @@
+{
+	"name": "rob006/yii-tinymce",
+	"description": "TinyMCE editor integration for Yii 1.1.",
+	"type": "yii-extension",
+	"keywords": ["yii", "extension", "TinyMCE", "widget", "elFinder"],
+	"minimum-stability": "dev",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Robert Korulczyk",
+			"email": "robert@korulczyk.pl",
+			"homepage": "https://rob006.net/"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/rob006/yii-tinymce/issues",
+		"source": "https://github.com/rob006/yii-tinymce"
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"tinymce/tinymce": "^4.5.6",
+		"yiisoft/yii": "~1.1.18"
+	},
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	},
+	"suggest": {
+		"rob006/yii-elfinder2": "Provides file manager integration with editor."
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0-dev"
+		}
+	}
+}

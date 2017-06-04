@@ -1,2 +1,62 @@
-# yii-tinymce
-TinyMCE editor integration for Yii 1.1
+TinyMCE integration for Yii 1.1
+===============================
+
+Yii 1.1 extension that provides basic integration with [TinyMce editor](https://www.tinymce.com/).
+
+
+Installation
+------------
+
+The preferred way to install this extension is through [composer](https://getcomposer.org/download/).
+
+Either run
+
+```shell
+php composer.phar require rob006/yii-tinymce
+```
+
+or add
+
+```json
+"rob006/yii2-tinymce": "^1.0"
+```
+
+to the require section of your `composer.json` file.
+
+
+Usage
+-----
+
+Basic usage:
+
+```php
+<?php $this->widget('TinyMceWidget', [
+	'model' => $model,
+	'attribute' => 'value',
+]) ?>
+```
+
+Usage with custom settings and [Yiistrap](http://www.getyiistrap.com/) and [elFinder](https://github.com/rob006/yii-elfinder2) extensions integration.
+
+```php
+<?= $form->textAreaControlGroup($model, 'value', ['rows' => 6, 'span' => 8,]) ?>
+<?php $this->widget('TinyMceWidget', [
+	'model' => $model,
+	'attribute' => 'value',
+	'dry_run' => true,
+	'fileManager' => [
+		'class' => 'TinyMceElFinder',
+		'popupConnectorRoute' => 'pageAssetsPopup',
+		'popupTitle' => 'Files',
+	],
+	'settings' => [
+		'content_css' => $this->getEditorStyles(),
+	],
+]) ?>
+```
+Resources
+---------
+
+ * [Extension page](https://github.com/rob006/yii-tinymce)
+ * [elFinder extension](https://github.com/rob006/yii-elfinder2)
+ * [TinyMce page](https://www.tinymce.com/)
