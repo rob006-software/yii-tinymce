@@ -3,6 +3,8 @@ TinyMCE integration for Yii 1.1
 
 Yii 1.1 extension that provides basic integration with [TinyMce editor](https://www.tinymce.com/).
 
+Based on https://github.com/zxbodya/yii-tinymce.
+
 
 Installation
 ------------
