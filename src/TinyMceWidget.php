@@ -158,9 +158,7 @@ class TinyMceWidget extends CInputWidget {
 
 	private function registerAssets($id) {
 		$cs = Yii::app()->getClientScript();
-		$cs->registerCoreScript('jquery');
 		$cs->registerScriptFile($this->tinymceAssetsDir . '/tinymce.min.js');
-		$cs->registerScriptFile($this->tinymceAssetsDir . '/jquery.tinymce.min.js');
 
 		if ($this->fileManager !== false) {
 			/* @var $fm TinyMceFileManager */
@@ -169,8 +167,9 @@ class TinyMceWidget extends CInputWidget {
 			$this->settings['file_browser_callback'] = $fm->getFileBrowserCallback();
 		}
 
+		$this->settings['selector'] = "#{$id}";
 		$settings = CJavaScript::encode($this->settings);
 
-		$cs->registerScript("{$id}_tinyMce_init", "$('#{$id}').tinymce({$settings});");
+		$cs->registerScript("{$id}_tinyMce_init", "tinymce.init({$settings});");
 	}
 }
