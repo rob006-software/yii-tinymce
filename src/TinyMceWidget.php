@@ -158,7 +158,11 @@ class TinyMceWidget extends CInputWidget {
 
 	private function registerAssets($id) {
 		$cs = Yii::app()->getClientScript();
-		$cs->registerScriptFile($this->tinymceAssetsDir . '/tinymce.min.js');
+		if (YII_DEBUG) {
+			$cs->registerScriptFile($this->tinymceAssetsDir . '/tinymce.js');
+		} else {
+			$cs->registerScriptFile($this->tinymceAssetsDir . '/tinymce.min.js');
+		}
 
 		if ($this->fileManager !== false) {
 			/* @var $fm TinyMceFileManager */
