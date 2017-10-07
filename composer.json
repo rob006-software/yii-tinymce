@@ -3,6 +3,7 @@
 	"description": "TinyMCE editor integration for Yii 1.1.",
 	"type": "yii-extension",
 	"keywords": ["yii", "extension", "TinyMCE", "widget", "elFinder"],
+	"homepage": "https://github.com/rob006-software/yii-tinymce",
 	"minimum-stability": "dev",
 	"license": "MIT",
 	"authors": [
@@ -13,8 +14,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/rob006/yii-tinymce/issues",
-		"source": "https://github.com/rob006/yii-tinymce"
+		"issues": "https://github.com/rob006-software/yii-tinymce/issues",
+		"source": "https://github.com/rob006-software/yii-tinymce"
 	},
 	"require": {
 		"php": ">=5.4.0",
