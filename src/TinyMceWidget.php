@@ -52,6 +52,11 @@ class TinyMceWidget extends CInputWidget {
 	public $fileManager = false;
 
 	/**
+	 * @var bool Whether widget should be localized using `Yii::app()->lang`.
+	 */
+	public $localized = true;
+
+	/**
 	 * Default widget configuration.
 	 *
 	 * @var array
@@ -119,6 +124,11 @@ class TinyMceWidget extends CInputWidget {
 	 */
 	private $tinymceAssetsDir;
 
+        /**
+         * @var string
+         */
+        private $tinymceLangsDir;
+
 	/**
 	 * {@inheritdoc}
 	 *
@@ -126,6 +136,10 @@ class TinyMceWidget extends CInputWidget {
 	 */
 	public function init() {
 		$this->tinymceAssetsDir = Yii::app()->assetManager->publish(Yii::getPathOfAlias('vendor.tinymce.tinymce'));
+		if($this->localized) {
+			$this->tinymceLangsDir = Yii::app()->assetManager->publish(Yii::getPathOfAlias('vendor.tweeb.tinymce-i18n.langs'));
+			$this->defaultSettings['language_url'] = $this->tinymceLangsDir . '/' . Yii::app()->language . '.js';
+		}
 
 		$this->settings = CMap::mergeArray($this->defaultSettings, $this->settings);
 	}
