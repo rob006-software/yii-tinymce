@@ -1,5 +1,5 @@
-TinyMCE integration for Yii 1.1
-===============================
+TinyMCE 4.x integration for Yii 1.1
+===================================
 
 Yii 1.1 extension that provides basic integration with [TinyMce editor](https://www.tinymce.com/).
 
@@ -23,7 +23,7 @@ or add
 "rob006/yii2-tinymce": "^1.0"
 ```
 
-to the require section of your `composer.json` file.
+to the `require` section of your `composer.json` file.
 
 
 Usage
