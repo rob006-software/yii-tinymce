@@ -58,13 +58,13 @@ class TinyMceWidget extends CInputWidget {
 	 */
 	public $defaultSettings = [
 		'plugins' => [
-			'advlist autolink lists link image charmap print preview hr anchor',
-			'searchreplace visualblocks visualchars code wordcount autosave',
-			'insertdatetime media nonbreaking save table directionality',
-			'template paste textcolor',
+			'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code', 'codesample',
+			'directionality', 'emoticons', 'fullscreen', 'help', 'image', 'importcss', 'insertdatetime', 'link',
+			'lists', 'media', 'nonbreaking', 'pagebreak', 'preview', 'quickbars', 'save', 'searchreplace', 'table',
+			'visualblocks', 'visualchars', 'wordcount',
 		],
 		'toolbar' => [
-			'undo redo | styleselect | forecolor backcolor | bold italic quote underline strikethrough subscript superscript | removeformat | alignleft aligncenter alignright alignjustify | ltr rtl',
+			'undo redo | styles | forecolor backcolor | bold italic quote underline strikethrough subscript superscript | removeformat | alignleft aligncenter alignright alignjustify | ltr rtl',
 			'bullist numlist outdent indent | link unlink anchor footnote index | image gallery media | nonbreaking charmap pagebreak hr searchreplace',
 		],
 		'indentation' => '2em',
@@ -94,7 +94,7 @@ class TinyMceWidget extends CInputWidget {
 		'toolbar_items_size' => 'small',
 		'image_advtab' => true,
 		'relative_urls' => false,
-		'height' => 400,
+		'resize' => true,
 		'content_css' => [],
 		// do not allow change list style
 		'advlist_bullet_styles' => 'default',
@@ -128,6 +128,9 @@ class TinyMceWidget extends CInputWidget {
 		$this->tinymceAssetsDir = Yii::app()->assetManager->publish(Yii::getPathOfAlias('vendor.tinymce.tinymce'));
 
 		$this->settings = CMap::mergeArray($this->defaultSettings, $this->settings);
+		if (!empty($this->settings['style_formats'])) {
+			$this->settings['style_formats'] = array_values($this->settings['style_formats']);
+		}
 	}
 
 	/**
@@ -168,7 +171,7 @@ class TinyMceWidget extends CInputWidget {
 			/* @var $fm TinyMceFileManager */
 			$fm = Yii::createComponent($this->fileManager);
 			$fm->init();
-			$this->settings['file_browser_callback'] = $fm->getFileBrowserCallback();
+			$this->settings['file_picker_callback'] = $fm->getFileBrowserCallback();
 		}
 
 		$this->settings['selector'] = "#{$id}";

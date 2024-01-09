@@ -1,4 +1,4 @@
-TinyMCE 4.x integration for Yii 1.1
+TinyMCE 6.x integration for Yii 1.1
 ===================================
 
 Yii 1.1 extension that provides basic integration with [TinyMce editor](https://www.tinymce.com/).
@@ -20,7 +20,7 @@ php composer.phar require rob006/yii-tinymce
 or add
 
 ```json
-"rob006/yii2-tinymce": "^1.0"
+"rob006/yii2-tinymce": "^2.0"
 ```
 
 to the `require` section of your `composer.json` file.
@@ -59,6 +59,6 @@ Usage with custom settings and [Yiistrap](http://www.getyiistrap.com/) and [elFi
 Resources
 ---------
 
- * [Extension page](https://github.com/rob006/yii-tinymce)
- * [elFinder extension](https://github.com/rob006/yii-elfinder2)
+ * [Extension page](https://github.com/rob006-software/yii-tinymce)
+ * [elFinder extension](https://github.com/rob006-software/yii-elfinder2)
  * [TinyMce page](https://www.tinymce.com/)
