@@ -15,17 +15,17 @@
  * ```php
  * $form->textArea($model, 'value', ['rows' => 6, 'span' => 8]);
  * $this->widget('TinyMceWidget', [
- * 	'model' => $model,
- * 	'attribute' => 'value',
- * 	'dry_run' => true,
- * 	'fileManager' => [
- * 		'class' => 'TinyMceElFinder',
- * 		'popupConnectorRoute' => 'pageAssetsPopup',
- * 		'popupTitle' => 'Files',
- * 	],
- * 	'settings' => [
- * 		'content_css' => $this->getEditorStyles(),
- * 	],
+ *    'model' => $model,
+ *    'attribute' => 'value',
+ *    'dry_run' => true,
+ *    'fileManager' => [
+ *        'class' => 'TinyMceElFinder',
+ *        'popupConnectorRoute' => 'pageAssetsPopup',
+ *        'popupTitle' => 'Files',
+ *    ],
+ *    'settings' => [
+ *        'content_css' => $this->getEditorStyles(),
+ *    ],
  * ]);
  * ```
  *
@@ -59,7 +59,8 @@ class TinyMceWidget extends CInputWidget {
 	public $defaultSettings = [
 		'plugins' => [
 			'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code', 'codesample',
-			'directionality', 'emoticons', 'fullscreen', 'help', 'image', 'importcss', 'insertdatetime', 'link',
+			// importcss conflicts with `style_formats` in some way
+			'directionality', 'emoticons', 'fullscreen', 'help', 'image'/*, 'importcss'*/, 'insertdatetime', 'link',
 			'lists', 'media', 'nonbreaking', 'pagebreak', 'preview', 'quickbars', 'save', 'searchreplace', 'table',
 			'visualblocks', 'visualchars', 'wordcount',
 		],
@@ -128,9 +129,6 @@ class TinyMceWidget extends CInputWidget {
 		$this->tinymceAssetsDir = Yii::app()->assetManager->publish(Yii::getPathOfAlias('vendor.tinymce.tinymce'));
 
 		$this->settings = CMap::mergeArray($this->defaultSettings, $this->settings);
-		if (!empty($this->settings['style_formats'])) {
-			$this->settings['style_formats'] = array_values($this->settings['style_formats']);
-		}
 	}
 
 	/**
@@ -167,16 +165,33 @@ class TinyMceWidget extends CInputWidget {
 			$cs->registerScriptFile($this->tinymceAssetsDir . '/tinymce.min.js');
 		}
 
+		$settings = $this->settings;
+		if (!empty($settings['style_formats'])) {
+			$settings['style_formats'] = $this->processStyleFormats($settings['style_formats']);
+		}
 		if ($this->fileManager !== false) {
 			/* @var $fm TinyMceFileManager */
 			$fm = Yii::createComponent($this->fileManager);
 			$fm->init();
-			$this->settings['file_picker_callback'] = $fm->getFileBrowserCallback();
+			$settings['file_picker_callback'] = $fm->getFileBrowserCallback();
 		}
 
-		$this->settings['selector'] = "#{$id}";
-		$settings = CJavaScript::encode($this->settings);
+		$settings['selector'] = "#{$id}";
+		$encodedSettings = CJavaScript::encode($settings);
 
-		$cs->registerScript("{$id}_tinyMce_init", "tinymce.init({$settings});");
+		$cs->registerScript("{$id}_tinyMce_init", "tinymce.init({$encodedSettings});");
+	}
+
+	private function processStyleFormats($options) {
+		if (is_array($options)) {
+			$options = array_values($options);
+			foreach ($options as &$option) {
+				if (!empty($option['items'])) {
+					$option['items'] = $this->processStyleFormats($option['items']);
+				}
+			}
+		}
+
+		return $options;
 	}
 }
