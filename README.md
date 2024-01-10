@@ -14,7 +14,7 @@ The preferred way to install this extension is through [composer](https://getcom
 Either run
 
 ```shell
-php composer.phar require rob006/yii-tinymce
+composer require rob006/yii-tinymce
 ```
 
 or add
@@ -56,6 +56,8 @@ Usage with custom settings and [Yiistrap](http://www.getyiistrap.com/) and [elFi
 	],
 ]) ?>
 ```
+
+
 Resources
 ---------
 
