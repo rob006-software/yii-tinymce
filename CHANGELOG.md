@@ -1,10 +1,10 @@
 CHANGELOG
 =========
 
-1.0.2 (under development)
+2.0.0 (2024-01-10)
 -------------------------
 
-- No changes have been made.
+- Update supported TinyMCE version to 6.x.
 
 
 1.0.1 (2017-06-08)
