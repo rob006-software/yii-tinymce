@@ -30,4 +30,11 @@ abstract class TinyMceFileManager extends CComponent {
 	 * @return string JavaScript callback function, starts with "js:".
 	 */
 	abstract public function getFileBrowserCallback();
+
+	/**
+	 * @return int
+	 */
+	public function getTinymceVersion() {
+		return 6;
+	}
 }
