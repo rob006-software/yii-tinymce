@@ -31,10 +31,11 @@ abstract class TinyMceFileManager extends CComponent {
 	 */
 	abstract public function getFileBrowserCallback();
 
+	/* @noinspection PhpUnused */
 	/**
 	 * @return int
 	 */
 	public function getTinymceVersion() {
-		return 6;
+		return 8;
 	}
 }

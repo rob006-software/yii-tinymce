@@ -1,14 +1,20 @@
 CHANGELOG
 =========
 
+3.0.0 (xxxx-xx-xx)
+------------------
+
+- Update supported TinyMCE version to 8.x.
+
+
 2.0.1 (2024-01-17)
--------------------------
+------------------
 
 - Add missing `TinyMceFileManager::getTinymceVersion()`.
 
 
 2.0.0 (2024-01-10)
--------------------------
+------------------
 
 - Update supported TinyMCE version to 6.x.
 

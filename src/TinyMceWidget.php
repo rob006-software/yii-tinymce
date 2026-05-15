@@ -106,6 +106,8 @@ class TinyMceWidget extends CInputWidget {
 		'media_live_embeds' => true,
 		// new features in TinyMCE 4.5.x
 		'style_formats_autohide' => true,
+		// Required by TinyMCE 8.x
+		'license_key' => 'gpl',
 	];
 
 	/**
